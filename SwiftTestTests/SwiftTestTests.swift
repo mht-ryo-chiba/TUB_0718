@@ -36,15 +36,26 @@ class SwiftTestTests: XCTestCase {
     }
     
     func testWin() {
+        let hand1 = viewController.returnHand(0)
+        XCTAssertEqual(hand1, Hand.gu)
+        let hand2 = viewController.returnHand(1)
+        XCTAssertEqual(hand2, Hand.pa)
+        let hand3 = viewController.returnHand(2)
+        XCTAssertEqual(hand3, Hand.tyoki)
 
+        //Logicが合っているかのテスト
+        let win1 = viewController.judgeLogic(myHand: Hand.gu, cpuHand: Hand.tyoki)
+        XCTAssertEqual(win1, Judge.win)
     }
     
-    func testLoss() {
-        
+    func testLose() {
+        let lose1 = viewController.judgeLogic(myHand: Hand.gu, cpuHand: Hand.pa)
+        XCTAssertEqual(lose1, Judge.lose)
     }
 
     func testDraw() {
-        
+        let draw1 = viewController.judgeLogic(myHand: Hand(rawValue: 1)!, cpuHand: Hand(rawValue: 1)!)
+        XCTAssertEqual(draw1, Judge.draw)
     }
     
     func testError() {
